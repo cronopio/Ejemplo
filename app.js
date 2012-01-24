@@ -16,7 +16,7 @@ var app = module.exports = express.createServer();
 var twit = new ntwitter({
   consumer_key: 'KnGiKFvB6gXfN5KOSLHCCw',
   consumer_secret: 'KhHKGcOOXMN87eY0pu4T2vR391bXPKblZE1zer7dN6o',
-  access_token_key: 'KhHKGcOOXMN87eY0pu4T2vR391bXPKblZE1zer7dN6o',
+  access_token_key: '12549842-HTsOUfKJaHmKcBmY6nrGz5Tg2XlnjrLRJduuhYvTE',
   access_token_secret: 'zoBir6DIy8I0N56FPvi4n1f1TASQkjuQZQgpvqoM8'
 });
 
