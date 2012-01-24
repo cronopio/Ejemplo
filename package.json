@@ -3,8 +3,10 @@
   , "version": "0.0.1"
   , "private": true
   , "dependencies": {
-      "express": "2.5.5"
-    , "stylus": ">= 0.0.1"
-    , "jade": ">= 0.0.1"
+      "express": "2.5.x"
+    , "stylus": "0.22.x"
+    , "jade": "0.20.x"
+    , "socket.io": "0.8.x"
+    , "mongoose": "2.4.x"
   }
 }
