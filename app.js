@@ -44,6 +44,17 @@ app.configure('production', function(){
 
 app.get('/', routes.index);
 
+twit.verifyCredentials(function(err, data) {
+  if(err) throw new Error(err);
+  console.log(data);
+});
+
+twit.stream('user', { track: "Iran" }, function(stream) {
+  stream.on('data', function(data) {
+    console.log(data);
+  });
+});
+
 // Wrap socket.io in app
 
 io.listen(app);
