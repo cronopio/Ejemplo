@@ -8,5 +8,6 @@
     , "jade": "0.20.x"
     , "socket.io": "0.8.x"
     , "mongoose": "2.4.x"
+    , "ntwitter": "0.2.x"
   }
 }

@@ -6,9 +6,19 @@
 var express  = require('express'),
     mongoose = require('mongoose'),
     io       = require('socket.io'),
+    ntwitter = require('ntwitter'),
     routes   = require('./routes')
 
 var app = module.exports = express.createServer();
+
+// Configure credentials
+
+var twit = new ntwitter({
+  consumer_key: '',
+  consumer_secret: '',
+  access_token_key: '',
+  access_token_secret: ''
+});
 
 // Configuration
 
