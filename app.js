@@ -82,6 +82,8 @@ twit.stream('user', { track: "#30thingsaboutme" }, function(stream) {
 
 io = io.listen(app);
 
+//io.disable('log level');
+
 io.sockets.on('connection', function(socket) {
   console.log("Cliente conectado");
 });
