@@ -11,6 +11,19 @@ var express  = require('express'),
 
 var app = module.exports = express.createServer();
 
+mongoose.connect('mongodb://localhost/ejemplo');
+
+// Model
+
+var Tweet = new mongoose.Schema({
+  tweet: String,
+  author: String,
+  id: String,
+  date: { type: Date, default: Date.now }
+});
+
+var TweetModel = mongoose.model('Tweet', Tweet);
+
 // Configure credentials
 
 var twit = new ntwitter({
@@ -46,18 +59,32 @@ app.get('/', routes.index);
 
 twit.verifyCredentials(function(err, data) {
   if(err) throw new Error(err);
-  console.log(data);
 });
 
-twit.stream('user', { track: "Iran" }, function(stream) {
+twit.stream('user', { track: "#30thingsaboutme" }, function(stream) {
   stream.on('data', function(data) {
-    console.log(data);
+    if(data.user) {
+      var _tweet = new TweetModel({
+        author: data.user.screen_name,
+        tweet: data.text,
+        id: data.id
+      });
+
+      _tweet.save(function(err, tweet) {
+        if(err) throw new Error(err);
+        io.sockets.emit('new tweet', { tweet: data.text, author: data.user.screen_name });  
+      });
+    }
   });
 });
 
 // Wrap socket.io in app
 
-io.listen(app);
+io = io.listen(app);
+
+io.sockets.on('connection', function(socket) {
+  console.log("Cliente conectado");
+});
 
 app.listen(3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
